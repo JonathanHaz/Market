@@ -2,14 +2,20 @@ import prisma from "@/app/lib/db";
 import { stripe } from "@/app/lib/stripe";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { NextResponse } from "next/server";
-import {unstable_noStore as noStore} from 'next/cache'
+import { unstable_noStore as noStore } from 'next/cache';
 
-export async function GET(){
+const getBaseUrl = () => {
+    return process.env.NODE_ENV === 'development'
+        ? 'http://localhost:3000'
+        : 'https://market-lvuzfn5cl-jonathanhs-projects.vercel.app';
+};
+
+export async function GET() {
     noStore();
-    const {getUser} = getKindeServerSession();
+    const { getUser } = getKindeServerSession();
     const user = await getUser();
 
-    if(!user || user === null || !user.id){
+    if (!user || user === null || !user.id) {
         throw new Error("No User");
     }
 
@@ -19,22 +25,15 @@ export async function GET(){
         }
     });
 
-    if(!dbUser){
+    if (!dbUser) {
         const account = await stripe.accounts.create({
             email: user.email as string,
-            controller: {
-                losses: {
-                    payments: "application"
-                },
-                fees: {
-                    payer: "application"
-                },
-                stripe_dashboard: {
-                    type: 'express'
-                },
+            type: 'express',
+            capabilities: {
+                card_payments: { requested: true },
+                transfers: { requested: true },
             }
-        })
-
+        });
 
         dbUser = await prisma.user.create({
             data: {
@@ -44,9 +43,9 @@ export async function GET(){
                 email: user.email ?? "",
                 profileImage: user.picture ?? `https://avatar.vercel.sh/${user.given_name}`,
                 connectedAccountId: account.id
-
             }
-        })
-    };
-    return NextResponse.redirect('http://localhost:3000')
+        });
+    }
+
+    return NextResponse.redirect(getBaseUrl());
 }
