@@ -30,7 +30,7 @@ const userSettingsSchema = z.object({
 const getBaseUrl = () => {
     return process.env.NODE_ENV === 'development'
         ? 'http://localhost:3000'
-        : 'https://market-lvuzfn5cl-jonathanhs-projects.vercel.app';
+        : 'https://market-ecru-three.vercel.app';
 };
 
 export async function SellProduct(prevState: any, formData: FormData) {
