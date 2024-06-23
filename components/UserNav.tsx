@@ -3,7 +3,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Button } from "./ui/button";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "./ui/dropdown-menu";
 import Link from "next/link";
-import { CircleDollarSign, Settings } from "lucide-react";
+import { CircleDollarSign, CreditCard, PackageSearch, Settings } from "lucide-react";
 
 interface UserNavProps {
     email: string;
@@ -32,8 +32,8 @@ interface UserNavProps {
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
                     <DropdownMenuItem asChild><Link href="/sell"><CircleDollarSign className="mr-2 h-4 w-4" />Sell Product</Link></DropdownMenuItem>
-                    <DropdownMenuItem asChild><Link href="/my-products">My Products</Link></DropdownMenuItem>
-                    <DropdownMenuItem asChild><Link href="/billing">Billing</Link></DropdownMenuItem>
+                    <DropdownMenuItem asChild><Link href="/my-products"><PackageSearch className="mr-2 h-4 w-4" />My Products</Link></DropdownMenuItem>
+                    <DropdownMenuItem asChild><Link href="/billing"><CreditCard className="mr-2 h-4 w-4" /> Billing</Link></DropdownMenuItem>
                     <DropdownMenuItem asChild><Link href="/settings"><Settings className="mr-2 h-4 w-4" />Settings</Link></DropdownMenuItem>
                 </DropdownMenuGroup>
                 <DropdownMenuSeparator />

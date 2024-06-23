@@ -70,8 +70,9 @@ export default async function ProductPage({params}: {params: {id: string}}) {
                 <div className="border-t border-gray-200 mt-10">
 
                 </div>
-                <div className="w-full max-w-2xl mx-auto mt-16 lg:max-w-none lg:mt-0 lg:col-span-4">
-
+                <div className="grid grid-cols-2 w-full gap-y-3 mt-10">
+                    <h3 className="text-sm font-medium text-muted-foreground col-span-1">Author:</h3>
+                    <h3 className="text-sm font-medium text-black col-span-1">{data?.User?.firstName}</h3>
                 </div>
         </div>
     </div>
