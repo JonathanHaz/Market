@@ -15,9 +15,9 @@ export async function Navbar() {
             <div className="md:col-span-3">
             <Link href={"/"}>
             <h1 className="text-2xl font-semibold">
-                Ani
+                Mar
             <span className="text-primary">
-                Ket
+                ket
             </span>
             </h1>
             </Link>

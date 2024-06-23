@@ -23,7 +23,7 @@ export function SubmitButtons({title}: {title: string}) {
 };
 
 interface BuyButtonProps {
-    price: number;
+    price: any; 
     type?: string;
     size?: string;
     className?: string;
@@ -31,21 +31,21 @@ interface BuyButtonProps {
   }
   
 
-  export function BuyButton({ price, type = "submit", size = "lg", className = "w-full mt-10", children }: BuyButtonProps) {
+  export function BuyButton({ price }: { price: number }) {
     const { pending } = useFormStatus();
-
-    return(
-        <>
+  
+    return (
+      <>
         {pending ? (
-            <Button disabled size={"lg"} className="w-full mt-10">
-                <Loader2 className="mr-2 h-4 w-4 animate-spin"/>
-                Please wait..
-            </Button>
-        ): (
-            <Button type="submit" size={"lg"} className="w-full mt-10">
-                Buy for ${price}
-            </Button>
+          <Button disabled size="lg" className="w-full mt-10">
+            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            Please Wait
+          </Button>
+        ) : (
+          <Button type="submit" size="lg" className="w-full mt-10">
+            Buy for ${price}
+          </Button>
         )}
-        </>
-    )
-}
+      </>
+    );
+  }

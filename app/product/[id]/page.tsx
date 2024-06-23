@@ -4,6 +4,8 @@ import { BuyButton } from "@/components/SubmitButtons";
 import { Button } from "@/components/ui/button";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import Image from "next/image";
+import {unstable_noStore as noStore} from 'next/cache'
+
 
 async function getData(id: string) {
     const data = await prisma.product.findUnique({
@@ -16,7 +18,7 @@ async function getData(id: string) {
             id: true,
             images: true,
             name: true,
-            price: true,
+            price: true ,
             createdAt: true,
             User: {
                 select: {
@@ -31,6 +33,7 @@ async function getData(id: string) {
 
 
 export default async function ProductPage({params}: {params: {id: string}}) {
+    noStore();
     const data = await getData(params.id)
   return (
     <div className="max-w-7xl mx-auto px-4 lg:px-8 lg:grid lg:grid-rows-1 lg:grid-cols-7 lg:gap-x-8 lg:gap-y-10 xl:gap-x-16 mt-24">
@@ -53,7 +56,7 @@ export default async function ProductPage({params}: {params: {id: string}}) {
 
                 <form action={BuyProduct}>
                     <input type="hidden" name="id" value={data?.id} />
-                <BuyButton price={data?.price as number} type="submit" size={"lg"} className="w-full mt-10">Buy for ${data?.price}</BuyButton>
+                    <BuyButton price={data?.price as number} />
                 </form>
 
                 <div className="border-t border-gray-200 mt-10 pt-10">
