@@ -33,7 +33,7 @@ interface UserNavProps {
                 <DropdownMenuGroup>
                     <DropdownMenuItem asChild><Link href="/sell"><CircleDollarSign className="mr-2 h-4 w-4" />Sell Product</Link></DropdownMenuItem>
                     <DropdownMenuItem asChild><Link href="/my-products">My Products</Link></DropdownMenuItem>
-                    <DropdownMenuItem>Profile</DropdownMenuItem>
+                    <DropdownMenuItem asChild><Link href="/billing">Billing</Link></DropdownMenuItem>
                     <DropdownMenuItem asChild><Link href="/settings"><Settings className="mr-2 h-4 w-4" />Settings</Link></DropdownMenuItem>
                 </DropdownMenuGroup>
                 <DropdownMenuSeparator />

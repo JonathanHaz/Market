@@ -1,4 +1,6 @@
+import { BuyProduct } from "@/app/actions";
 import prisma from "@/app/lib/db";
+import { BuyButton } from "@/components/SubmitButtons";
 import { Button } from "@/components/ui/button";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import Image from "next/image";
@@ -48,7 +50,12 @@ export default async function ProductPage({params}: {params: {id: string}}) {
         <div className="max-w-2xl mx-auto mt-5 lg:max-w-none lg:mt-0 lg:row-end-2 lg:row-span-2 lg:col-span-3">
                 <h1 className="text-2xl font-extrabold tracking-tight text-gray-900 sm:text-3xl">{data?.name}</h1>
                 <p className="mt-2 text-muted-foreground">{data?.description}</p>
-                <Button size={"lg"} className="w-full mt-10">Buy for ${data?.price}</Button>
+
+                <form action={BuyProduct}>
+                    <input type="hidden" name="id" value={data?.id} />
+                <BuyButton price={data?.price as number} type="submit" size={"lg"} className="w-full mt-10">Buy for ${data?.price}</BuyButton>
+                </form>
+
                 <div className="border-t border-gray-200 mt-10 pt-10">
                     <div className="grid grid-cols-2 w-full gap-y-3">
                         <h3 className="text-sm font-medium text-muted-foreground col-span-1">Released:</h3>
