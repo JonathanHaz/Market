@@ -3,7 +3,9 @@
 <body>
 
 <h1>Anime Market Website</h1>
-![Screenshot_8](https://github.com/user-attachments/assets/da94f9db-41a5-467b-8950-617e09720d10)
+
+![Overview](https://github.com/user-attachments/assets/f4cd0da6-99ac-4663-93f9-8c4ef41c03c7)
+
 
 <h2>Overview</h2>
 <p>This Anime Market website allows users to register and engage in buying and selling anime-related merchandise such as mangas, figures, and clothes. The platform is designed with a focus on providing a seamless and secure experience for anime enthusiasts. Built using modern web technologies, it ensures smooth performance and a great user experience.</p>
